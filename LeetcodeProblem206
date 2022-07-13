@@ -1,0 +1,13 @@
+public static Node reverseList(Node head) {
+        Node prev = null;
+        Node current = head.next;
+        head.next = prev;
+        while (current!=null){
+            prev = current.next;
+            current.next= head;
+            head = current;
+            current = prev;
+        }
+        return head;
+    }
+    
