@@ -5,7 +5,7 @@ class Solution {
          if(root==null) return 0;
         ArrayList<Integer> list = new ArrayList<>();
         kthSmallestRecursively(root,k,list);
-        System.out.println(list);
+         //Collections.sort(ls,Collections.reverseOrder()); // For Kth largest element
         return list.get(k-1);
     }
 
