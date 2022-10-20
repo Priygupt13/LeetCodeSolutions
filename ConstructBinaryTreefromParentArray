@@ -6,37 +6,37 @@ class Solution
     //Function to construct binary tree from parent array.
     public static Node createTree(int parent[], int N)
     {
-        Map<Integer,List<Integer>> map1  =  getMapping(parent);
-        List<Integer> val = map1.get(-1);
-        int value = val.get(0);
-        return helperConstructTree(value,map1);
-    }
-    public static Map<Integer,List<Integer>> getMapping(int[] parent){
-        ArrayList<Integer> ls = new ArrayList<>();
-        HashMap<Integer,List<Integer>> map = new HashMap<>();
-        for(int i=0;i<parent.length;i++){
-            if(!map.containsKey(parent[i])){
-                ls = new ArrayList<>();
-                ls.add(i);
-                map.put(parent[i],ls);
-            }else {
-                List<Integer> list =  map.get(parent[i]);
-                list.add(i);
-            }
-        }
-       // System.out.println(map);
-        return map;
+        if(parent.length==1) return new Node(0);
+           HashMap<Integer,List<Integer>> map = new HashMap<>();
+           ArrayList<Integer> ls = new ArrayList<>();
+           for(int i=0;i<parent.length;i++){
+               if(!map.containsKey(parent[i])){
+                   ls = new ArrayList<>();
+                   ls.add(i);
+                  map.put(parent[i],ls);
+               }
+               else {
+                 List<Integer> ls1 = map.get(parent[i]);
+                 ls1.add(i);
+               }
+           }
+           List<Integer> ls1 = map.get(-1);
+           int rootValue = ls1.get(0);
+          return createTreeHelper(map,rootValue);
     }
     
-     private static Node helperConstructTree(int val,Map<Integer,List<Integer>> map) {
-        if(!map.containsKey(val)) return new Node(val);
-        Node root = new Node(val);
-        List<Integer> ls = map.get(val);
-            if(ls!=null){
-                root.left = helperConstructTree(ls.get(0),map);
-                if(ls.size()==2)
-                  root.right = helperConstructTree(ls.get(1),map);
-            }
+     private static Node createTreeHelper(HashMap<Integer, List<Integer>> map,int rootValue) {
+        
+        Node root = new Node(rootValue);
+         if(root==null) return null;
+        List<Integer> childrens =  map.get(rootValue);
+        if(childrens!=null){
+             root.left = createTreeHelper(map,childrens.get(0));
+             if(childrens.size()>1){
+             root.right = createTreeHelper(map,childrens.get(1));
+           }
+        }
+       
         return root;
-    }
+    }    
 }
