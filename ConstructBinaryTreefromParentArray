@@ -1,0 +1,42 @@
+
+// https://practice.geeksforgeeks.org/problems/construct-binary-tree-from-parent-array/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+class Solution
+{
+    //Function to construct binary tree from parent array.
+    public static Node createTree(int parent[], int N)
+    {
+        Map<Integer,List<Integer>> map1  =  getMapping(parent);
+        List<Integer> val = map1.get(-1);
+        int value = val.get(0);
+        return helperConstructTree(value,map1);
+    }
+    public static Map<Integer,List<Integer>> getMapping(int[] parent){
+        ArrayList<Integer> ls = new ArrayList<>();
+        HashMap<Integer,List<Integer>> map = new HashMap<>();
+        for(int i=0;i<parent.length;i++){
+            if(!map.containsKey(parent[i])){
+                ls = new ArrayList<>();
+                ls.add(i);
+                map.put(parent[i],ls);
+            }else {
+                List<Integer> list =  map.get(parent[i]);
+                list.add(i);
+            }
+        }
+       // System.out.println(map);
+        return map;
+    }
+    
+     private static Node helperConstructTree(int val,Map<Integer,List<Integer>> map) {
+        if(!map.containsKey(val)) return new Node(val);
+        Node root = new Node(val);
+        List<Integer> ls = map.get(val);
+            if(ls!=null){
+                root.left = helperConstructTree(ls.get(0),map);
+                if(ls.size()==2)
+                  root.right = helperConstructTree(ls.get(1),map);
+            }
+        return root;
+    }
+}
