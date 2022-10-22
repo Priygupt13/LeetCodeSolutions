@@ -1,0 +1,33 @@
+// https://practice.geeksforgeeks.org/problems/sort-a-stack/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=sort-a-stack
+
+class GfG{
+	public Stack<Integer> sort(Stack<Integer> s)
+	{
+	    Stack<Integer> s2 = new Stack<>();
+	   return sortStack(s,s2);
+	}
+	
+	public static void insertElementInSortedStackRecursion(Stack<Integer> stack,int target){
+         if(stack.isEmpty() || stack.peek()<target){
+             stack.push(target);
+             return;
+         }
+         int element = stack.pop();
+         insertElementInSortedStackRecursion(stack, target);
+         stack.push(element);
+      }
+      
+       private static Stack<Integer> sortStack(Stack<Integer> s1,Stack<Integer> s2) {
+        if(s1.size()==1){
+             while (!s2.isEmpty()){
+                 int element = s2.pop();
+                 insertElementInSortedStackRecursion(s1,element);
+             }
+           // System.out.println(s1);
+            return s1;
+        }
+        s2.push(s1.pop());
+        sortStack(s1,s2);
+        return s1;
+    }
+}
