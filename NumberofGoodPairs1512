@@ -1,0 +1,12 @@
+https://leetcode.com/problems/number-of-good-pairs/solutions/
+
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int[] arr = new int[101];
+        int sum =0;
+        for(int i=0;i<nums.length;i++){
+            sum+=arr[nums[i]]++;
+        }
+        return sum;
+    }
+}
