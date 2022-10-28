@@ -1,0 +1,28 @@
+https://leetcode.com/problems/group-anagrams/
+
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        ArrayList<List<String>> ls = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
+        HashMap<String,List<String>> map = new HashMap<>();
+        for(int i=0;i<strs.length;i++){
+            String str1 = strs[i];
+            char[] ch = str1.toCharArray();
+            Arrays.sort(ch);
+            String s1 = String.valueOf(ch);
+            if(!map.containsKey(s1)){
+                list = new ArrayList<>();
+                list.add(str1);
+                ls.add(list);
+               map.put(s1,list);
+            }else{
+               List<String> s2 = map.get(s1);
+               s2.add(str1);
+               map.put(s1,s2);
+            }
+        }
+       // System.out.print(map);
+        return ls;
+    }
+}
