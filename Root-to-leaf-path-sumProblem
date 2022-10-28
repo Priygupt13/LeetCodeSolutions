@@ -1,0 +1,23 @@
+https://practice.geeksforgeeks.org/problems/root-to-leaf-path-sum/1?page=1&difficulty[]=0&company[]=Amazon&category[]=Tree&sortBy=submissions
+
+class Solution {
+    /*you are required to complete this function */
+    boolean hasPathSum(Node root, int S) {
+       if(root==null) return false;
+       int sum = 0; 
+      return dfs(root,S,sum);
+    }
+    
+    public  boolean dfs(Node root,int S,int sum){
+        if(root==null) return false;
+         sum+= root.data;
+        if(root.left==null && root.right==null){
+         if(sum==S){
+             return true;
+         }else{
+             return false;
+         }  
+       }
+       return dfs(root.left,S,sum) || dfs(root.right,S,sum);
+    }
+}
