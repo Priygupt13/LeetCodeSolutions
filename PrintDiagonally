@@ -1,0 +1,30 @@
+https://practice.geeksforgeeks.org/problems/print-diagonally4331/1?page=1&difficulty[]=0&company[]=Amazon&category[]=Matrix&sortBy=submissions
+
+class Solution{
+    static ArrayList<Integer> downwardDigonal(int N, int A[][])
+    {
+        // code here 
+        
+       ArrayList<Integer> a = new ArrayList<>();
+        for(int start_col =0;start_col<N ; ++start_col){
+            int row =0;
+            int col = start_col;
+            while (col>=0){
+                a.add(A[row][col]);
+                row++;
+                col--;
+            }
+        }
+        for(int row_start=1;row_start<N;++row_start){
+            int col = N-1;
+            int row = row_start;
+            while (row<N){
+                a.add(A[row][col]);
+                col--;
+                row++;
+            }
+        }
+       // System.out.println(a);
+        return a;
+    }
+}
