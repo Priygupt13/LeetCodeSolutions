@@ -1,0 +1,38 @@
+2 Nov,2022
+
+https://leetcode.com/problems/sum-of-left-leaves/description/
+
+Pseudo Code
+1. Is tree empty?
+2. If yes then return 0
+3. Is current node a leaf node and Is it's a left leaf node?
+4. If yes, return value
+5. Go to step 3 till you find a left leaf node
+6. Is current node a right leaf node then return false
+7. Add all leaf left values
+8. return sum of all left leaf nodes.
+
+   public int sumOfLeftLeaves(TreeNode root){
+     // if tree is empty
+      if(root==null) return 0;
+      
+      // if current node is leaf node
+      if(root.left == null && root.right==null)
+       return 0;
+       
+       // set boolean value for left leaf node
+       boolean isLeft = true;
+       return sumOfLeftLeavesSubTree(root,isLeft); 
+      }
+   
+   
+   public int sumOfLeftLeavesSubTree(TreeNode root,boolean isLeft){
+      if(root==null) return 0;
+      if(root.left==null && root.right==null) {
+         if(isLeft){
+           return root.val;
+         }
+      }
+      return sumOfLeftLeavesSubTree(root.left,true)+sumOfLeftLeavesSubTree(root.right,false);
+   }
+   
