@@ -1,7 +1,7 @@
 https://leetcode.com/problems/number-of-islands/description/
 
 class Solution {
-    int count = 1;
+    int count = 0;
     public int numIslands(char[][] grid) {
         if(grid.length==1 && grid[0].length==1 && grid[0][0]==1) return 1;
         if(grid.length==1 && grid[0].length==1 && grid[0][0]==0) return 0;
@@ -11,12 +11,12 @@ class Solution {
         for(int i=0;i<rows;++i){
            for(int j=0;j<cols;++j){
                if(grid[i][j]=='1'){
-                   dfs(grid,i,j);
                    count++;
+                   dfs(grid,i,j);
                }
            }
         }
-        return count-1;
+        return count;
     }
 
     private void dfs(char[][] grid,int i,int j){
