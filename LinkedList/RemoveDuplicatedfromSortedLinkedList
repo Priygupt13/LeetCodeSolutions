@@ -1,0 +1,85 @@
+
+https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/
+
+
+* Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head==null) return null;
+        ListNode dummy = new ListNode(-1000);
+        dummy.next = head;
+        ListNode prev = dummy;
+        ListNode curr= prev.next;
+        while(curr!=null){
+               if(prev.val!=curr.val){
+                    prev = prev.next;
+                    curr = prev.next;
+               }else{
+                    while(curr!=null)
+                    {
+                       if(prev.val==curr.val){
+                          curr = curr.next; 
+                       }else{
+                           break;
+                       }
+                     }   
+                    prev.next = curr;
+               }
+        }
+        return dummy.next;
+    }
+
+}
+
+/**
+ public class DeleteDuplicatesTest{
+
+      @Test
+      public void testDeleteDuplicates_NullList_ReturnsNull() {
+        ListNode head = null;
+        ListNode result = deleteDuplicates(head);
+        assertNull(result);
+    }
+
+    @Test
+    public void testDeleteDuplicates_NoDuplicates_ReturnsSameList(){
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+
+        ListNode result = deleteDuplicates(head);
+        assertSame(head,result);
+        assertEquals(1,result.val);
+        assertEquals(2,result.next.val);
+        assertEquals(3,result.next.next.val);
+        assertNull(result.next.next.next); 
+    }
+
+     @Test
+    public void testDeleteDuplicates_DuplicatesExist_RemovesDuplicates() {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(1);
+        head.next.next = new ListNode(2);
+        head.next.next.next = new ListNode(3);
+        head.next.next.next.next = new ListNode(3);
+
+        ListNode result = deleteDuplicates(head);
+
+        // Check if the resulting list has duplicates removed
+        assertEquals(1, result.val);
+        assertEquals(2, result.next.val);
+        assertEquals(3, result.next.next.val);
+        assertNull(result.next.next.next);
+    }
+ }
+
+
+ */
