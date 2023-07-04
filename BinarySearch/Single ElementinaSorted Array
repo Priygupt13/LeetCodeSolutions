@@ -1,0 +1,90 @@
+https://leetcode.com/problems/single-element-in-a-sorted-array/description/
+
+class Solution {
+   
+    public int singleNonDuplicate(int[] nums){
+       for(int i=0;i<nums.length-1;i+=2){
+           if(nums[i]!=nums[i+1]){
+               return nums[i];
+           }
+       }
+       return nums[nums.length-1];
+      }
+    }
+    public int singleNonDuplicate(int[] nums) {
+        int start = 0;
+        int end = nums.length-1;
+        if(nums.length==1) return nums[0];
+        while(start<end){
+            int mid = start + (end-start)/2;
+            if(start==end){
+                return nums[mid];
+            }
+            if(mid!=0 && mid!=nums.length-1){
+                if(nums[mid]!=nums[mid+1] && nums[mid]!=nums[mid-1]){
+                      return nums[mid];
+                }
+                else if(nums[mid]==nums[mid-1]){
+                    if(((mid-1)-start)%2!=0){
+                        end=mid-2;
+                    }
+                    else{
+                       start = mid+1;
+                    }
+                }else{
+                    if(((nums.length-1)-(mid+1))%2!=0){
+                        start = mid+2;
+                    }else{
+                        end=mid-1;
+                    }
+                }
+            }
+        }
+       return nums[start];
+    }
+
+}
+
+
+
+ Class Test{
+
+   @Test
+   public void testSingleNonDuplicate_OnlyOneElement(){
+        int[] nums = {1};
+        int expected = 1;
+        int actual = singleNonDuplicate(nums);
+        Assert.assertEquals(expected,actual);
+   }
+
+    @Test
+   public void testSingleNonDuplicate_NonDuplicateInMiddle(){
+        int[] nums = {1,1,2,3,3};
+        int expected = 2;
+        int actual = singleNonDuplicate(nums);
+        Assert.assertEquals(expected,actual);
+   }
+    @Test
+   public void testSingleNonDuplicate_NonDuplicateAtStart(){
+        int[] nums = {1,2,2,3,3};
+        int expected = 1;
+        int actual = singleNonDuplicate(nums);
+        Assert.assertEquals(expected,actual);
+   }
+
+    @Test
+   public void testSingleNonDuplicate_NonDuplicateAtEnd(){
+        int[] nums = {1,1,2,2,3};
+        int expected = 3;
+        int actual = singleNonDuplicate(nums);
+        Assert.assertEquals(expected,actual);
+   }
+
+  @Test
+   public void testSingleNonDuplicate_NonDuplicateNotInMiddle(){
+        int[] nums = {1,1,2,3,3,4,4};
+        int expected = 2;
+        int actual = singleNonDuplicate(nums);
+        Assert.assertEquals(expected,actual);
+   }
+}
