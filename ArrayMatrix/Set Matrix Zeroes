@@ -1,0 +1,131 @@
+https://leetcode.com/problems/set-matrix-zeroes/description/
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int[] rows = new int[matrix.length];
+        int[] cols = new int[matrix[0].length];
+        for(int i=0;i<matrix.length;++i){
+            for(int j=0;j<matrix[0].length;++j){
+                if(matrix[i][j]==0){
+                    rows[i] = -1;
+                    cols[j] = -1;
+                } 
+            }
+        }
+        for(int i=0;i<matrix.length;++i){
+            for(int j=0;j<matrix[0].length;++j){
+                if(rows[i]==-1){
+                    matrix[i][j]=0;
+                }
+                if(cols[j]==-1){
+                    matrix[i][j]=0;
+                }
+            }
+        }
+
+    }
+
+
+}
+/**
+public class SolutionTest {
+
+  @Test
+  public void testSetZeros1(){
+
+      Solution solution = new Solution();
+       // Test case 1: Regular matrix with one zero
+        int[][] matrix1 = {
+            {1, 2, 3},
+            {4, 0, 6},
+            {7, 8, 9}
+        };
+
+        int[][] expected = {
+            {1,0,3}
+            {0,0,0}
+            {7,0,9}
+        };
+         solution.setZeroes(matrix1);
+         Assertions.assertArrayEquals(expected,matrix1);
+  }
+   
+
+   @Test
+   public void testSetZeros2(){
+       // Test case 2: Matrix with no zeros
+       int[][] matrix1 = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        int[][] expected = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+         solution.setZeroes(matrix1);
+         Assertions.assertArrayEquals(expected,matrix1);
+   }
+
+   @Test
+   public void testSetZeros3(){
+        // Test case 3: Matrix with all zeros
+        int[][] matrix1 = {
+            {0, 0, 0},
+            {0, 0, 0},
+            {0, 0, 0}
+        };
+
+        int[][] expected = {
+            {0, 0, 0},
+            {0, 0, 0},
+            {0, 0, 0}
+        };
+
+       solution.setZeroes(matrix1);
+       Assertions.assertArrayEquals(expected,matrix1);
+
+   }
+
+
+   //Test case4: Matrix with multiple zeros in different rows and columns
+    @Test
+   public void testSetZeros3(){
+        // Test case 3: Matrix with all zeros
+        int[][] matrix1 = {
+            {1, 0, 3, 4},
+            {5, 6, 0, 8},
+            {9, 10, 11, 12}
+        };
+
+        int[][] expected = {
+            {0, 0, 0, 0},
+            {0, 0, 0, 0},
+            {9, 0, 0, 12}
+        };
+
+       solution.setZeroes(matrix1);
+       Assertions.assertArrayEquals(expected,matrix1);
+       
+    }
+
+       // Test case: Matrix with a single row:
+      @Test
+     public void testSetZeros3(){
+        // Test case 3: Matrix with all zeros
+        int[][] matrix1 = {
+            {1, 0, 3, 4},
+        };
+
+        int[][] expected = {
+            {0, 0, 0, 0};
+        };
+
+       solution.setZeroes(matrix1);
+       Assertions.assertArrayEquals(expected,matrix1);
+    }
+
+   
+}
+ */
