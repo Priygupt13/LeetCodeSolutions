@@ -14,7 +14,14 @@
  * }
  */
 
-https://leetcode.com/problems/subtree-of-another-tree/description/
+/*
+ * LeetCode Url: https://leetcode.com/problems/subtree-of-another-tree/description/
+ * 
+ * Time Complexity: O(m*n) where m is the number of nodes in the 'root' tree and n is the number of nodes in the 'subRoot' tree.
+ * Space Complexity: O(max(m, n))
+ */ 
+
+
 
 class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
