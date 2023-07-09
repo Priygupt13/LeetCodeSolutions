@@ -1,0 +1,63 @@
+https://leetcode.com/problems/3sum/description/
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> set1 = new HashSet<>();
+        Arrays.sort(nums);
+        HashSet<Integer> set = new HashSet<>();
+        for(int i=0;i<nums.length;++i){
+            for(int j=i+1;j<nums.length;++j){
+                int k = -(nums[i]+nums[j]);
+                if(set.contains(k)){
+                   ArrayList<Integer> list = new ArrayList<>();
+                   list.add(nums[i]);
+                   list.add(nums[j]);
+                   list.add(k);
+                   set1.add(list);
+                }
+                set.add(nums[j]);
+            }
+            set.clear();
+        }
+        return new ArrayList<>(set1);
+    }
+}
+/**
+ class SolutionTest{
+
+    @Test
+    public void testThreeSum_AllZeros_ValidOutPut() {
+       Solution solution = new Solution();
+       int[] nums = {0,0,0};
+       List<List<Integer>> expected = new ArrayList<>();
+       expected.add(Arrays.asList(0,0,0));
+       List<List<Integer>> result = solution.threeSum(nums);
+       Assertions.assertEquals(expected,result);
+    }
+
+     @Test
+    public void testThreeSum_NoTriplets_ValidOutput() {
+        Solution solution = new Solution();
+
+        int[] nums = {1, 2, 3, 4, 5};
+        List<List<Integer>> expected = new ArrayList<>();
+
+        List<List<Integer>> result = solution.threeSum(nums);
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testThreeSum_ExampleInput_ValidOutput() {
+        Solution solution = new Solution();
+
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+        List<List<Integer>> expected = new ArrayList<>();
+        expected.add(Arrays.asList(-1, -1, 2));
+        expected.add(Arrays.asList(-1, 0, 1));
+
+        List<List<Integer>> result = solution.threeSum(nums);
+
+        Assertions.assertEquals(expected, result);
+    }
+}
+ */
