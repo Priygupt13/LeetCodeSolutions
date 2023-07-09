@@ -1,0 +1,101 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+https://leetcode.com/problems/subtree-of-another-tree/description/
+
+class Solution {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if(root==null && subRoot==null) return true;
+        if(root==null || subRoot==null) return false; 
+        boolean res = isSame(root,subRoot);
+        if(res) return true;      
+        return  isSubtree(root.left,subRoot) || isSubtree(root.right,subRoot); 
+    }
+
+    boolean isSame(TreeNode p,TreeNode q){
+        if(p==null && q==null) return true;
+        if(p==null || q==null) return false;
+        if(p.val!=q.val) return false;
+        return isSame(p.left,q.left) && isSame(p.right,q.right);
+    }
+}
+
+/* 
+class SolutionTest{
+
+    // Test Case 1: Both root and subRoot are null
+        
+    @Test
+    public void testBothTreesAreNull(){
+        Solution solution = new Solution();
+        TreeNode root = null;
+        TreeNode subRoot = null;
+        boolean expected = true;
+        boolean actual  = solution.isSubtree(root,subRoot);
+        Assertions.assertEquals(expected, actual);
+    }
+
+   @Test
+    public void testOneTreesIsNull(){
+        Solution solution = new Solution();
+        TreeNode root = null;
+        TreeNode subRoot = new TreeNode(1);
+        boolean expected = false;
+        boolean actual  = solution.isSubtree(root,subRoot);
+        Assertions.assertEquals(expected, actual);
+    }
+
+   @Test
+    public void testIdenticalTrees(){
+        Solution solution = new Solution();
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        TreeNode subRoot = root;
+        boolean expected = true;
+        boolean actual  = solution.isSubtree(root,subRoot);
+        Assertions.assertEquals(expected, actual);
+    }
+
+   @Test
+    public void testSubTreeIsProperSubset(){
+        Solution solution = new Solution();
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        TreeNode subRoot = new TreeNode(2);
+        boolean expected = true;
+        boolean actual  = solution.isSubtree(root,subRoot);
+        Assertions.assertEquals(expected, actual);
+    }
+
+
+   @Test
+    public void testSubTreeNotProperSubset(){
+        Solution solution = new Solution();
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        TreeNode subRoot = new TreeNode(4);
+        boolean expected = false;
+        boolean actual  = solution.isSubtree(root,subRoot);
+        Assertions.assertEquals(expected, actual);
+    }
+
+
+}
+
+*/
