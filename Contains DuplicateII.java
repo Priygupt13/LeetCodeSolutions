@@ -1,5 +1,10 @@
+/*
+ * LeetCode Url: https://leetcode.com/problems/contains-duplicate-ii
+ * 
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */ 
 
-//https://leetcode.com/problems/contains-duplicate-ii/description/
 class Solution {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         if(nums.length==1 && k==0) return true;
@@ -19,5 +24,3 @@ class Solution {
         return false;
     }
 }
-// time complexity : O(n)
-// space complexity : O(n)
