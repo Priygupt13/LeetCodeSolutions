@@ -1,0 +1,95 @@
+
+/*
+ * LeetCode Url: https://leetcode.com/problems/spiral-matrix/description/
+ * 
+ * Time Complexity: O(m*n)
+ * Space Complexity: O(1)
+ */ 
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        int rowBegin = 0;
+        int rowEnd = matrix.length-1;
+        int colBegin = 0;
+        int colEnd = matrix[0].length-1;
+        List<Integer> list = new ArrayList<Integer>();
+        
+        while(rowBegin<=rowEnd && colBegin<=colEnd)
+        {
+            for(int i = colBegin;i<=colEnd;++i){
+                list.add(matrix[rowBegin][i]);
+            }
+            rowBegin++;
+            if(rowBegin>rowEnd)   break;  
+
+            for(int i = rowBegin;i<=rowEnd;++i){
+                   list.add(matrix[i][colEnd]);
+                }
+            
+            
+            colEnd--;
+            if(colBegin>colEnd)   break;  
+
+            for(int i=colEnd;i>=colBegin;i--){
+                list.add(matrix[rowEnd][i]);
+            }
+         
+            rowEnd--;
+              if(rowBegin>rowEnd)   break;  
+
+            for(int i=rowEnd;i>=rowBegin;i--){
+                list.add(matrix[i][colBegin]);
+            }
+            colBegin++;
+             if(colEnd<colBegin)   break;  
+        }
+        return list;
+    }
+}
+
+/**
+ class Solution{
+
+     @Test
+    void testSpiralOrder_EmptyMatrix() {
+        int[][] matrix = {};
+        Solution spiralOrder = new Solution();
+        List<Integer> result = spiralOrder.spiralOrder(matrix);
+        List<Integer> expected = Collections.emptyList();
+        assertEquals(expected, result);
+    }
+
+     @Test
+     public void testSpiralOrderSingleRow(){
+         Solution solution = new Solution();
+         int[][] matrix = [[1,2,3]];
+          List<Integer> expected = Arrays.asList(1, 2, 3);
+         List<Integer> actual = solution.spiralOrder(matrix);
+         Assertions.assertEquals(actual,expected);
+     }
+
+     @Test
+     public void testSpiralOrderSingleColumn(){
+         Solution solution = new Solution();
+         int[][] matrix = [[1],[2],[3]];
+         List<Integer> expected = Arrays.asList(1, 2, 3);
+         List<Integer>  actual = solution.spiralOrder(matrix);
+         Assertions.assertEquals(actual,expected);
+     }
+
+    @Test
+    void testSpiralOrder_RectangularMatrix() {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9},
+            {10, 11, 12}
+        };
+        Solution spiralOrder = new Solution();
+        List<Integer> result = spiralOrder.spiralOrder(matrix);
+        List<Integer> expected = Arrays.asList(1, 2, 3, 6, 9, 12, 11, 10, 7, 4, 5, 8);
+        assertEquals(expected, result);
+    }
+
+ }
+ */
