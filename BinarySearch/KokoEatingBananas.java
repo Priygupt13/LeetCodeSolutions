@@ -1,5 +1,8 @@
 https://leetcode.com/problems/koko-eating-bananas/description/
 
+TC : O(nlogm)
+SC : O(1)    
+
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
         int start = 1;
