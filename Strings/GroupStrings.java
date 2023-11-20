@@ -1,5 +1,5 @@
 TC : O(m*n)
-SC : O(m*n)  
+SC : O(n)  
 class Solution {
     public List<List<String>> groupStrings(String[] strings) {
         Map<String,List<String>> map = new HashMap<>();
