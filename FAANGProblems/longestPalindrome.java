@@ -1,6 +1,16 @@
 // https://leetcode.com/problems/longest-palindromic-substring/
 // TC: O(n^2)
 // SC : O(1)
+
+// Approach: Palindrome Expansion:
+/*
+    1. Iterate through each character in the string.
+    2. For each character, consider it as a potential center of a palindrome.
+    3. Expand outward from the center to check for palindromes.
+    4. Two cases are considered:
+       Palindromes with odd length.
+       Palindromes with even length.
+*/
 class Solution {
     public String longestPalindrome(String s) {
         if(s.length()==1) return s;
